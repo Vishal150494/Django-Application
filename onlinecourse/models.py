@@ -96,8 +96,9 @@ class Enrollment(models.Model):
 
 # Question Model
 class Question(models.Model):
-    question_text = models.TextField(max_length=200)
+    
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    question_text = models.TextField(max_length=200)
     grade = models.IntegerField(default=50)
     
     def __str__(self):
@@ -114,7 +115,7 @@ class Question(models.Model):
         
 # Choice model to save all choices of the question
 class Choice(models.Model):
-    course = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     is_correct = models.BooleanField(default=False)
 
